@@ -1,3 +1,11 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  devise_for :users
+
+  devise_scope :user do
+    # register
+    get 'signup', to: 'devise/registrations#new'
+    # login
+    get 'login', to: 'devise/sessions#new'
+    delete 'logout', to: 'devise/sessions#destroy'
+  end
 end
