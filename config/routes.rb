@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
+  resources :static_pages
   devise_for :users
+
+  root 'static_pages#home'
 
   devise_scope :user do
     # register
