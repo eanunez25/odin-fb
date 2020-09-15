@@ -1,0 +1,24 @@
+<% provide(:title, "All Users") %>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center header">All Users</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <% @users.each do |u| %>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= u.first_name %> <%= u.last_name %></h5>
+            <a href="#" class="btn btn-primary float-right">Add Friend</a>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>

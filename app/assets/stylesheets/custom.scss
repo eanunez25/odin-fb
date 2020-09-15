@@ -66,3 +66,17 @@ $grey: #6c757c;
 a.divider {
   border-top: 2px solid rgb(226, 226, 226) !important;
 }
+
+
+/* font */
+
+h1.header {
+  margin-top: 20px;
+}
+
+
+/* cards */  
+
+.card-body {
+  border: 4px $dark-blue !important;
+}
