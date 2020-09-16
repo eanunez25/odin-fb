@@ -1,2 +1,27 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-6 offset-md-3">
+      <p><%= @post.user.full_name %></p>
+      <h3><%= @post.content %></h3>  
+      <p><%= @post.formatted_date %></p>
+    </div>
+
+    <div class="col-md-6 offset-md-3">
+      <%= render 'shared/comment_form' %>
+    </div>
+
+    <div class="col-md-6 offset-md-3">
+      <% if @comments.any? %>
+        <% @comments.each do |c| %>
+          <p><%= c.user.full_name %></p>
+          <p><%= c.content %></p>
+          <p><%= c.formatted_date %></p>
+        <% end %>
+      <% else %>
+        <br>No comments</p>
+      <% end %>
+    </div>
+
+  </div>
+</div>

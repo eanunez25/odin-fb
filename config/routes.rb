@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   resources :friendships, only: [:create]
   resources :likes, only: [:create]
-  resource :comments, only: [:new, :create]
   resources :posts, only: [:index, :show, :new, :create, :destroy]
+  resource :comments, only: [:new, :create]
   resources :static_pages
   resources :users, only: [:index, :show]
   devise_for :users
