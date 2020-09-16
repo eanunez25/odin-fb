@@ -30,4 +30,15 @@ module ApplicationHelper
     Post.find(comment.post_id)
   end
 
+  # checks wheter a post or comment has laready been likey by the 
+  # current user, returning either true or false
+  def liked?(subject, type)
+    result = false
+    result = Like.where(user_id: current_user.id, post_id: subject.id)
+              .exists? if type == 'post'
+    result = Like.where(user_id: current_user.id, comment_id: subject.id)
+              .exists? if type == 'comment'
+    result
+  end
+
 end
