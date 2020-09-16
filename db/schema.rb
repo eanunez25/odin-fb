@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_15_234212) do
+ActiveRecord::Schema.define(version: 2020_09_16_011956) do
 
   create_table "friendships", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -27,6 +27,14 @@ ActiveRecord::Schema.define(version: 2020_09_15_234212) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.text "content"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "requests", force: :cascade do |t|
@@ -49,4 +57,5 @@ ActiveRecord::Schema.define(version: 2020_09_15_234212) do
   end
 
   add_foreign_key "notifications", "users"
+  add_foreign_key "posts", "users"
 end
