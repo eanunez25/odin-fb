@@ -10,4 +10,6 @@ class User < ApplicationRecord
   has_many :friends, class_name: "User", foreign_key: :user_id
   has_many :friendships
   has_many :friends, through: :friendships
+
+  has_many :notifications
 end
