@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :pending_requests, -> { merge(Friendship.not_friends) }, 
             through: :sent_requests, source: :receiver
 
-  has_many :notifications
+  has_many :notifications, dependent: :destroy
 
   has_many :posts
 
