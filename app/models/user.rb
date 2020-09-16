@@ -19,4 +19,25 @@ class User < ApplicationRecord
   has_many :comments
 
   has_many :likes, dependent: :destroy
+
+  # return a string of the user's full name
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
+  # return all posts from this user's friends and self
+  def friends_and_own_posts
+    myfriends = friends
+    our_posts = []
+    myfriends.each do |f|
+      f.posts.each do |p|
+        our_posts << p
+      end
+    end
+    posts.each do |p|
+      our_posts << p
+    end
+    our_posts
+  end
+
 end
