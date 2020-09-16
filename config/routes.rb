@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resource :comments, only: [:new, :create]
   resources :posts, only: [:index, :show, :new, :create]
   resources :static_pages
   resources :users, only: [:index, :show]
