@@ -41,4 +41,25 @@ module ApplicationHelper
     result
   end
 
+
+
+  def friend_request_sent?(user)
+    current_user.sent_requests.exists?(receiver_id: user.id, status: false)
+  end
+  
+  def friend_request_received?(user)
+    current_user.received_requests.exists?(requestor_id: user.id, status: false)
+  end
+  
+  # Checks whether a user has had a friend request sent to them by the current user or 
+  # if the current user has been sent a friend request by the user returning either true or false
+  def possible_friend?(user)
+    request_sent = current_user.sent_requests.exists?(receiver_id: user.id)
+    request_received = current_user.received_requests.exists?(requstor_id: user.id)
+    
+    return true if request_sent != request_recieved    
+    return true if request_sent == request_recieved && request_sent == true    
+    return false if request_sent == request_recieved && request_sent == false
+  end
+
 end
