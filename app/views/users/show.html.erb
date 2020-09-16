@@ -1,1 +1,16 @@
-hello
+<div class="container">
+  <div class="row">
+
+    <%= render 'shared/user_stats' %>
+
+    <div class="col-md-8">
+      <h3>Posts (<%= @user.posts.count %>)</h3>
+      <% if @posts.empty? %>
+        <p><%= @user.full_name %> has no posts.</p>
+      <% else %>
+        <%= render 'shared/posts' %>
+      <% end %>
+    </div>
+
+  </div>
+</div>

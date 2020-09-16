@@ -33,8 +33,17 @@ $grey: #6c757c;
 /* buttons */
 
 .btn{
-
   color: $honeydew !important;
+}
+
+.delete{
+  background-color: $red !important;
+  border-color: $red !important;
+}
+
+.delete:hover {
+  background-color: rgb(121, 1, 1) !important;
+  border-color: rgb(121, 1, 1) !important; 
 }
 
 

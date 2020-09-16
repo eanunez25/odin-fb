@@ -1,21 +1,39 @@
-<section class="jumbotron text-center">
+<% unless user_signed_in? %>
+  <section class="jumbotron text-center">
 
-    <div class="row align-items-center">
+      <div class="row align-items-center">
 
-      <div class="col-md-6">
-        <p class="lead honeydew">Keep track of metagame and personal MTG matches</p>
-        <p>
-          <a href="/signup" class="btn btn-primary">Sign Up Now!</a>
-          <a href="#" class="btn btn-secondary">More Info</a>
-        </p>
+        <div class="col-md-6">
+          <p class="lead honeydew">Keep track of metagame and personal MTG matches</p>
+          <p>
+            <a href="/signup" class="btn btn-primary">Sign Up Now!</a>
+            <a href="#" class="btn btn-secondary">More Info</a>
+          </p>
+        </div>
+
+        <div class="col-md-6">
+            <%= link_to image_tag("banner.PNG", alt: "Always Luck MTG banner", width: "100%"), 
+              root_path, class:"logo" %>
+        </div>
+
       </div>
 
-      <div class="col-md-6">
-          <%= link_to image_tag("banner.PNG", alt: "Always Luck MTG banner", width: "100%"), 
-            root_path, class:"logo" %>
-      </div>
+  </section>
+<% else %>
+
+  <div class="container">
+    <div class="row">
+
+      <%= render 'shared/user_stats' %>
+
+      <%= render 'shared/post_form' %>
+
+      <div class="col-md-8 offset-md-4">
+        <h1>Feed</h1>
+        <%= render 'shared/posts' %>
+      </div>  
 
     </div>
+  </div>
 
-
-</section>
+<% end %>

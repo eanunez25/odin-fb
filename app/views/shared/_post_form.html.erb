@@ -1,0 +1,6 @@
+<%= form_with model: @post, local: true do |f| %>
+  <%= render 'devise/shared/error_messages', resource: @post %>
+  <%= f.text_area :content, class: 'form-control' %>
+  <%= f.submit 'New Post', class: 'btn btn-primary' %>
+<% end %>
+

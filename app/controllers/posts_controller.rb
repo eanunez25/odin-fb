@@ -15,7 +15,8 @@ class PostsController < ApplicationController
   def create 
     @post = current_user.posts.build(post_params)
     if @post.save
-      redirect_to @post
+      flash[:success] = 'Post created'
+      redirect_to root_url
     else
       render 'new'
     end
@@ -23,7 +24,7 @@ class PostsController < ApplicationController
   
   def destroy
     @post = Post.find(params[:id])
-    return unless current_user == @post.user_id
+
 
     @post.destroy
     flash[:success] = 'Post deleted'
