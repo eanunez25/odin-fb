@@ -8,12 +8,13 @@ class LikesController < ApplicationController
     return unless @subject
     if already_liked?(type)
       dislike(type)
+      flash[:success] = 'Disliked!'
     else
       @like = @subject.likes.build(user_id: current_user.id)
       if @like.save
-        flash[:success] = "#{type} liked!"
-        @notification = new_notification(@subject.user, @subject.id, notice_type)
-        @notification.save
+        flash[:success] = "#{type} liked! #{@subject}"
+        # @notification = new_notification(@subject.user, @subject.id, notice_type)
+        # @notification.save
       else
         flash[:danger] = "#{type} like failed!"
       end
@@ -26,6 +27,7 @@ class LikesController < ApplicationController
     def type_subject?(params)
       type = 'post' if params.key?('post_id')
       type = 'comment' if params.key?('comment_id')
+
       subject = Post.find(params[:post_id]) if type == 'post'
       subject = Comment.find(params[:comment_id]) if type == 'comment'
       [type, subject]

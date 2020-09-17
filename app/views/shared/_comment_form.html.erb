@@ -6,6 +6,6 @@
       <%= f.text_area :content, class: "comment-box", placeholder: "Type your comment..." %>
     </div>
     <div>
-      <%= f.submit 'Comment', class:"btn btn-primary"%>
+      <%= f.submit 'Comments (' + @post.comments.count.to_s + ")", class:"btn btn-primary"%>
     </div>
 <% end %>

@@ -1,11 +1,20 @@
 
-
 <% @posts.each do |p| %>
-  <p><%= p.user.full_name %></p>
-  <p><%= p.content %></p>
-  <p><%= p.formatted_date %></p>
-  <%= link_to "Comments (#{p.comments.count})", post_path(p), class: "btn btn-primary btn-sm" %>
-  <% if p.user == current_user %>
-    <%= link_to "Delete", p, method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-primary delete btn-sm' %>  
-  <% end %>
+  <div class="col-md-12 user-card">
+    <div class="card">
+      <div class="card-body">
+        <p class="name"><%= p.user.full_name %></p>
+        <p class="date"><%= p.formatted_date %></p>
+        <p><%= p.content %></p>
+
+        <%= link_to "Comments (#{p.comments.count})", post_path(p), class: "btn btn-primary btn-sm" %>
+        <%= link_to "Likes (#{p.likes.count})", post_likes_path(p), method: :post, class: 'btn btn-primary btn-sm' %>
+        <% if p.user == current_user %>
+          <%= link_to "Delete", p, method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-primary delete btn-sm' %>  
+        <% end %>
+      </div>
+    </div>
+  </div>
+
 <% end %>
+

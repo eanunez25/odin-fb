@@ -11,7 +11,7 @@ $grey: #6c757c;
 /* navbar */ 
 
 .navbar {
-  margin-bottom: 0px;
+  margin-bottom: 20px;
   background-color: $dark-blue;
 }
 
@@ -83,6 +83,10 @@ h1.header {
   margin-top: 20px;
 }
 
+.center {
+  text-align: center;
+}
+
 
 /* cards */  
 
@@ -112,4 +116,13 @@ a.link:hover {
 
 .user-card {
   margin-bottom: 10px;
+}
+
+p.name {
+  margin-bottom: 0px;
+}
+
+p.date {
+  font-size: 12px;
+  margin-top: 0px
 }

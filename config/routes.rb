@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   resources :friendships, only: [:create]
-  resources :likes, only: [:create]
+
   resources :posts, only: [:index, :show, :new, :create, :destroy] do 
-    resources :comments, only: [:new, :create, :destroy]
+    resources :comments, only: [:new, :create, :destroy] do
+      resources :likes, only: [:create]
+    end
+    resources :likes, only: [:create]
   end
   
   resources :static_pages

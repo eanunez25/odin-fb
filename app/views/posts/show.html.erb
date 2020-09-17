@@ -5,6 +5,7 @@
       <p><%= @post.user.full_name %></p>
       <h3><%= @post.content %></h3>  
       <p><%= @post.formatted_date %></p>
+      <%= link_to "Likes (#{@post.likes.count})", post_likes_path(@post), method: :post, class: "btn btn-primary" %>
     </div>
 
     <div class="col-md-6 offset-md-3">
@@ -14,10 +15,11 @@
     <div class="col-md-6 offset-md-3">
       <% if @comments.any? %>
         <% @comments.each do |c| %>
-          <p><%= c.post.user.full_name %></p>
+          <p><%= c.user.full_name %></p>
           <p><%= c.content %></p>
           <p><%= c.formatted_date %></p>
-          <% if c.post.user == current_user %>
+          <%= link_to "Like (#{c.likes.count})", post_comment_likes_path(c.post, c), method: :post, class: "btn btn-primary btn-sm" %>
+          <% if c.user == current_user %>
             <%= link_to "Delete", [c.post, c], method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-primary delete btn-sm' %>  
           <% end %>
         <% end %>
