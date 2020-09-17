@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   resources :friendships, only: [:create]
   resources :likes, only: [:create]
-  resources :posts, only: [:index, :show, :new, :create, :destroy]
-  resource :comments, only: [:new, :create]
+  resources :posts, only: [:index, :show, :new, :create, :destroy] do 
+    resources :comments, only: [:new, :create, :destroy]
+  end
+  
   resources :static_pages
   resources :users, only: [:index, :show]
   devise_for :users

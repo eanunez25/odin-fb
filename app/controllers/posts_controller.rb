@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @user = current_user
     @post = Post.find(params[:id])
     @comments = @post.comments.all.order('created_at DESC')
     @comment = Comment.new
@@ -26,7 +27,6 @@ class PostsController < ApplicationController
   
   def destroy
     @post = Post.find(params[:id])
-
 
     @post.destroy
     flash[:success] = 'Post deleted'

@@ -14,9 +14,12 @@
     <div class="col-md-6 offset-md-3">
       <% if @comments.any? %>
         <% @comments.each do |c| %>
-          <p><%= c.user.full_name %></p>
+          <p><%= c.post.user.full_name %></p>
           <p><%= c.content %></p>
           <p><%= c.formatted_date %></p>
+          <% if c.post.user == current_user %>
+            <%= link_to "Delete", [c.post, c], method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-primary delete btn-sm' %>  
+          <% end %>
         <% end %>
       <% else %>
         <br>No comments</p>

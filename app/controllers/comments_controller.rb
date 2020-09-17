@@ -6,9 +6,10 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = current_user.comments.build(comment_params)
-    @post = Post.find(params[:comment][:post_id])
+    @post = Post.find(params[:post_id]) 
+    @comment = @post.comments.build(comment_params)
     if @comment.save
+      flash[:success] = 'Comment created'
       @notification = new_notification(@post.user, @post.id, 'comment')
       @notification.save
     end
@@ -17,10 +18,10 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    return unless current_user.id == @comment.user_id
+
     @comment.destroy
     flash[:success] = 'Comment deleted'
-    redirect_back(fallboack_lcocation: root_path)
+    redirect_to post_path(@comment.post.id)
   end
 
   private
